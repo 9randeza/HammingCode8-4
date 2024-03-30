@@ -20,7 +20,7 @@ short HammingCode(auto b){
 	p3 = (b2 + b3 + b4)%2 ;
 	p = (b1 + b2 + b3 +  b4 + p2 + p1 + p3 )%2; 
 
-	Hemming = (b1 << 2) + (b2 << 4) + (b4 << 6) +  (b3 << 5) + (p2 << 1) + p1  + (p3 << 3) + (p << 7);
+	Hemming = (b1 << 3) + (b2 << 5) + (b4 << 7) +  (b3 << 6) + (p2 << 2) + (p1 << 1)  + (p3 << 4) + (p);
 	
 	return Hemming;
 }
@@ -31,6 +31,7 @@ std::bitset<16> glue(auto b){
 	
 	short Hamming_1 = HammingCode(c);
 	short Hamming_2 = HammingCode(a) << 8;
+	std::cout << Hamming_1 << " " << Hamming_2 << std::endl;
 	std::bitset<16> Hamming = Hamming_1 + Hamming_2;
 	
 	
@@ -40,12 +41,12 @@ std::bitset<16> glue(auto b){
 
 int main() {
 
-	char  c = 't';
-	int i = 126;
+	char  c = 'B';
+	int i = 9;
 	std::bitset<8> t1(c);
 	std::bitset<8> t2(i);
 	std::cout << c << " : " << t1 << std::endl;
-	std::cout <<  " code Hemming 8/4: " << glue(c) << "\n";
-	std::cout << i << " : " << t2;
-	std::cout <<  " code Hemming 8/4: " << glue(i) << "\n";
+	std::cout <<  "code Hemming 8/4: " << glue(c) << "\n";
+	std::cout << i << " : " << t2 << std::endl;
+	std::cout <<  "code Hemming 8/4: " << glue(i) << "\n";
 }
