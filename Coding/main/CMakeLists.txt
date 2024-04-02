@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.8)
+project(main)
+add_executable(main main.cpp)
+target_link_libraries(main gtest)
+set(CMAKE_CXX_STANDART 20)
+set(CMAKE_CXX_STANDART_REQUIRED True)
