@@ -1,14 +1,14 @@
 #include <iostream>
 #include <bitset>
+#include <cstdint>
 
 struct NotFixMistake{
 	std::string message;
     NotFixMistake(const std::string& msg) : message(msg) {}
 };
 
-int DeCoder(int c){
-	
-	int t = c;
+uint8_t DeCoder(uint8_t c){
+	uint8_t t = c;
 	std::bitset<8> c_1 = t;
 	
 	bool b1 = t & 0x1;
@@ -24,8 +24,6 @@ int DeCoder(int c){
 	bool s_1 = (b2 + b3 + b4 + b8)%2;
 	bool s_2 = (b2 + b4 + b5 + b6)%2;
 	bool p = (b1 + b2 + b3 + b4 + b5 + b6 + b7 + b8)%2;
-	
-	int mask;
 	
 	if((s_0 == 0 || s_1 == 0 || s_2 == 0) && p == 0){
 
@@ -47,23 +45,24 @@ int DeCoder(int c){
 		throw NotFixMistake("something wrong, and I can`t fix it\n");
 	}
 	
-	int H = b2 + (b4 << 1) + (b6 << 2) + (b8 << 3);
+	uint8_t H = b2 + (b4 << 1) + (b6 << 2) + (b8 << 3);
 		
 	return H;
 }
 
-void glue(short c){
-	int g = c >> 8;
-	int t = c;
+void glue(uint16_t c){
+	uint8_t g = c >> 8;
+	uint8_t t = c;
 	try{
-	int H = (DeCoder(g) << 4) + DeCoder(t);
-	std::cout << H << std::endl;
+	uint8_t H = (DeCoder(g) << 4) + DeCoder(t);
+	std::bitset<8> h = H;
+	std::cout << h << std::endl;
 	}
 	catch (const NotFixMistake& e) {
         std::cout << e.message << std::endl;
 	}
 }
 int main(){
-	short c = 25673;
+	uint16_t c = 25673;
 	glue(c);
 }

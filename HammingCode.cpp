@@ -1,14 +1,14 @@
 #include <iostream>
 #include <bitset>
+#include <cstdint>
 
-
-short HammingCode(auto b){	
+uint16_t HammingCode(auto b){	
 	bool p1;
 	bool p2;
 	bool p3;
 	bool p4;
 	
-	short Hemming;
+	uint16_t Hemming;
 	
 	bool b1 = b & 0x1;
 	bool b2 = b & 0x2;
@@ -25,12 +25,12 @@ short HammingCode(auto b){
 	return Hemming;
 }
 
-std::bitset<16> glue(auto b){
-	auto c = b;
-	auto a = b >> 4;
+std::bitset<16> glue(uint8_t b){
+	uint8_t c = b & 0xF;
+	uint8_t a = b >> 4;
 	
-	short Hamming_1 = HammingCode(c);
-	short Hamming_2 = HammingCode(a) << 8;
+	uint16_t Hamming_1 = HammingCode(c);
+	uint16_t Hamming_2 = HammingCode(a) << 8;
 	std::cout << Hamming_1 << " " << Hamming_2 << std::endl;
 	std::bitset<16> Hamming = Hamming_1 + Hamming_2;
 	
@@ -40,9 +40,8 @@ std::bitset<16> glue(auto b){
 
 
 int main() {
-
 	char  c = 'B';
-	int i = 66;
+	uint8_t i = 4;
 	std::bitset<8> t1(c);
 	std::bitset<8> t2(i);
 	std::cout << c << " : " << t1 << std::endl;
