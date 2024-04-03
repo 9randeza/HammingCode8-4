@@ -2,29 +2,30 @@
 #include "algorithm.cpp"
 #include <gtest/gtest.h>
 #include <string>
+#include <cstdint>
 
 TEST(Test, Test1){
-	short Hamming = 25673;
-	int origin = 66;
+	uint16_t Hamming = 25673;
+	uint8_t origin = 66;
 	std::pair<int ,std::string> result = glue(Hamming);
 	ASSERT_EQ(origin, result.first);
 }
 
 TEST(Test, Test2){
-	short origin;
+	uint16_t origin;
 	ASSERT_FALSE(origin);
 }
 
 TEST(Test, Test3){
-	short Hamming = 25667;
+	uint16_t Hamming = 25667;
 	std::string error = "something wrong, and I can`t fix it\n";
 	std::pair<int, std::string> result = glue(Hamming);
 	ASSERT_EQ(error, result.second);
 }
 
 TEST(Test, Test4){
-	short Hamming = 25665;
-	int origin = 66;
+	uint16_t Hamming = 25665;
+	uint8_t origin = 66;
 	std::pair<int, std::string> result = glue(Hamming);
 	ASSERT_EQ(origin, result.first);
 }

@@ -2,6 +2,7 @@
 #include "algorithm.cpp"
 #include <bitset>
 #include <gtest/gtest.h>
+#include <cstdint>
 
 TEST(Test, Test1){
 	char origin = 'v';
@@ -10,12 +11,12 @@ TEST(Test, Test1){
 	ASSERT_EQ(Hamming, glue(origin));
 }
 TEST(Test, Test2){
-	char origin;
+	uint8_t origin;
 	ASSERT_FALSE(origin);
 }
 
 TEST(Test, Test3){
-	int origin = 5;
+	uint16_t origin = 5;
 	std::bitset<16> Hamming = 0x1573;
 	
 	ASSERT_EQ(Hamming, glue(origin));
